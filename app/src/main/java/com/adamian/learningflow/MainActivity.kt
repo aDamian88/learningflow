@@ -1,36 +1,26 @@
 package com.adamian.learningflow
 
 import android.os.Bundle
-import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,7 +33,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.adamian.learningflow.ui.theme.BottomNavItem
 import com.adamian.learningflow.ui.theme.LearningflowTheme
-import com.adamian.learningflow.ui.theme.PurpleGrey40
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
 
                 val navController = rememberNavController()
-                Scaffold (
+                Scaffold(
                     bottomBar = {
                         BottomNavigationBar(
                             items = listOf(
@@ -80,17 +69,13 @@ class MainActivity : ComponentActivity() {
                             }
                         )
                     }
-                ) {
+                ) { it ->
+                    {
+                        it.calculateBottomPadding()
+                    }
                     Navigation(navController = navController)
                 }
 
-
-            //                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    ElevatedCardExample()
-//                }
             }
         }
     }
@@ -109,31 +94,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     LearningflowTheme {
         Greeting("Android")
-    }
-}
-
-@Composable
-fun ElevatedCardExample() {
-    Surface(
-        modifier = Modifier
-            .size(width = 240.dp, height = 100.dp)
-            .padding(8.dp), // Optional padding
-        color = Color.Cyan // Set the background color here
-    ) {
-        ElevatedCard(
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 8.dp
-            ),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text(
-                text = "Colored Elevated",
-                modifier = Modifier
-                    .padding(16.dp),
-                textAlign = TextAlign.Center,
-                color = PurpleGrey40
-            )
-        }
     }
 }
 
